@@ -2,37 +2,67 @@ package bracket;
 
 import java.util.ArrayList;
 
-public class TestBracketGenerator {
+public class Generator {
+    private ArrayList<Team> teams;
+    private int maxTeams;
+    private int placeholders;
+    private ArrayList[] winnerTournament;
+    private ArrayList[] loserTournament;
+    private int winningRounds;
+    private int losingRounds;
 
-    ArrayList<Team> teams = new ArrayList<>();
-
-    public TestBracketGenerator(ArrayList<Team> teams) {
+    public Generator(ArrayList<Team> teams) {
         this.teams = teams;
+        maxTeams = roundPowerTwo(teams.size());
+        winningRounds = (int) (Math.log(maxTeams) / Math.log(2));
+        losingRounds = (winningRounds - 2) * 2;
+        winnerTournament = new ArrayList[winningRounds];
+        loserTournament = new ArrayList[losingRounds];
+        placeholders = maxTeams - teams.size();
+        for (int i = 0; i < placeholders; i++) {
+            teams.add(new Team("ph", -i));
+        }
     }
 
-    public TestBracket getBracket() { 
-    }
-    
+//    public Bracket getBracket() {
+//    }
+
+
+    /**
+     * generates the winning bracket
+     *
+     * @return the winning bracket
+     */
     private ArrayList<Match>[] generateWinningBracket() {
 
-        // there will always be ceil(lg(N)) rounds
-        int numberOfRounds = (int)Math.ceil(Math.log(teams.size())/Math.log(2));
-
         // populate the winning bracket;
-        ArrayList<Match>[] winningBracket = new ArrayList[numberOfRounds];
-        for (int i = 0; i < numberOfRounds; i++) {
+        ArrayList<Match>[] winningBracket = new ArrayList[winningRounds];
+        for (int i = 0; i < winningRounds; i++) {
             for (int j = 0; j < Math.pow(2, i); j++) {
                 winningBracket[0].add(new Match());
             }
         }
+    }
 
-        // populate the matches
-        int index = 0;
-        for (int i = 0; i < teams.size(); i++) {
-            winningBracket[numberOfRounds - 1].get(index).addTeam(teams.get(i));
-            index = (index + 1) % winningBracket[numberOfRounds - 1].size();
+    public int getNumberOfTeams() {
+        return maxTeams - placeholders;
+    }
+
+    public int getNumberOfRounds() {
+        //return rounds;
+    }
+
+    public ArrayList<Team>[] getLosingBracket() {
+        loserTournament[0].add(new Match());
+        for (int i = 1; i < losingRounds; i += 2) {
+            for (int j = 0; j < Math.pow(2, i); j++) {
+                loserTournament[i].add(new Match());
+                loserTournament[i + 1].add(new Match());
+            }
         }
+    }
 
-        return winningBracket;
+    private int roundPowerTwo(int num) {
+        return (int) Math.pow(2, Math.ceil(Math.log(num) / Math.log(2)));
     }
 }
