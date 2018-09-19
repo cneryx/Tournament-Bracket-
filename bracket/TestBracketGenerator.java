@@ -15,7 +15,6 @@ public class TestBracketGenerator {
     
 
     private ArrayList<Match>[] generateWinningBracket() {
-
         // there will always be ceil(lg(N)) rounds
         int numberOfRounds = (int)Math.ceil(Math.log(teams.size())/Math.log(2));
 
