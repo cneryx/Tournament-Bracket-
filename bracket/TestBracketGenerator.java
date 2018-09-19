@@ -13,8 +13,8 @@ public class TestBracketGenerator {
     public TestBracket getBracket() { 
     }
     
-
     private ArrayList<Match>[] generateWinningBracket() {
+
         // there will always be ceil(lg(N)) rounds
         int numberOfRounds = (int)Math.ceil(Math.log(teams.size())/Math.log(2));
 
@@ -27,10 +27,9 @@ public class TestBracketGenerator {
         }
 
         // populate the matches
-        Iterator<Team> teamIterator = teams.iterator();
         int index = 0;
-        while (teamIterator.hasNext()) {
-            winningBracket[numberOfRounds - 1].get(index).addTeam(teamIterator.next());
+        for (int i = 0; i < teams.size(); i++) {
+            winningBracket[numberOfRounds - 1].get(index).addTeam(teams.get(i));
             index = (index + 1) % winningBracket[numberOfRounds - 1].size();
         }
 
