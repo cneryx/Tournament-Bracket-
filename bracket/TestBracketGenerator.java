@@ -10,6 +10,6 @@ public class TestBracketGenerator {
         this.teams = teams;
     }
 
-    public static TestBracket getBracket() { ;
+    public TestBracket getBracket() { ;
     }
 }
