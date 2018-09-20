@@ -18,13 +18,12 @@ public class Generator {
         this.numberOfTeams = teams.size();
         
         maxTeams = roundPowerTwo(teams.size());
-        
         winningRounds = (int) (Math.log(maxTeams) / Math.log(2));
         losingRounds = (winningRounds - 2) * 2;
         winnerTournament = new ArrayList[winningRounds];
         loserTournament = new ArrayList[losingRounds];
         
-        placeholders = maxTeams - teams.size();
+        placeholders = maxTeams - numberOfTeams;
         for (int i = 0; i < placeholders; i++) {
             teams.add(new Team("ph", -i));
         }
