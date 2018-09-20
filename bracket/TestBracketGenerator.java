@@ -32,7 +32,7 @@ public class Generator {
         ArrayList<Match>[] loserBracket = generateLoserBracket(losingRounds);
 
         // create the Bracket object
-        Bracket bracket = new Bracket(teams, numberOfRounds, numberOfRounds, winnerBracket, loserBracket);
+        Bracket bracket = new Bracket(numberOfTeams, numberOfRounds, winnerBracket, loserBracket);
         return bracket;
     }
 
