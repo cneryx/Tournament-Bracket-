@@ -10,13 +10,11 @@ public class Bracket {
     private int winningRounds;
     private int losingRounds;
 
-    public Bracket(ArrayList<Team> teams, int numTeams, ArrayList<Match>[] winnerTournament, ArrayList<Match>[] loserTournament, int winningRounds, int losingRounds) {
+    public Bracket(ArrayList<Team> teams, int numTeams, ArrayList<Match>[] winnerTournament, ArrayList<Match>[] loserTournament) {
         this.teams = teams;
         this.maxTeams = numTeams;
         this.winnerTournament = winnerTournament;
         this.loserTournament = loserTournament;
-        this.winningRounds = winningRounds;
-        this.losingRounds = losingRounds;
     }
 
     void setMatchWinner(String teamName, int round, int matchNumber, int bracket) {
