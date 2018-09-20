@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public class Generator {
     private ArrayList<Team> teams;
+    private int numberOfTeams;  
+    
     private int maxTeams;
     private int placeholders;
     private ArrayList[] winnerTournament;
@@ -13,6 +15,8 @@ public class Generator {
 
     public Generator(ArrayList<Team> teams) {
         this.teams = teams;
+        this.numberOfTeams = teams.size();
+        
         maxTeams = roundPowerTwo(teams.size());
         
         winningRounds = (int) (Math.log(maxTeams) / Math.log(2));
@@ -31,7 +35,7 @@ public class Generator {
 
 
     public int getNumberOfTeams() {
-        return maxTeams - placeholders;
+        return numberOfTeams;
     }
 
     public int getNumberOfRounds() {
