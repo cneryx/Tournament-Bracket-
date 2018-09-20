@@ -42,8 +42,6 @@ public class Generator {
     }
 
     private ArrayList<Match>[] generateWinningBracket() {
-
-        // populate the winning bracket;
         ArrayList<Match>[] winningBracket = new ArrayList[winningRounds];
         for (int i = 0; i < winningRounds; i++) {
             for (int j = 0; j < Math.pow(2, i); j++) {
