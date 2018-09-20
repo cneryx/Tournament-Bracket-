@@ -10,6 +10,7 @@ public class Generator {
     }
 
     public Bracket getBracket() {
+        
         // download the data
         ArrayList<Team> teams = new ArrayList<>();
         teams.addAll(teamData);
