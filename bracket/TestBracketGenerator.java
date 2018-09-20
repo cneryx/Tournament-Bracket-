@@ -41,12 +41,6 @@ public class Generator {
         //return rounds;
     }
 
-    
-    /**
-     * generates the winning bracket
-     *
-     * @return the winning bracket
-     */
     private ArrayList<Match>[] generateWinningBracket() {
 
         // populate the winning bracket;
