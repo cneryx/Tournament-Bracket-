@@ -1,18 +1,28 @@
+package bracket;
+
+import bracket.Match;
+
 import java.util.ArrayList;
 
 public class Bracket {
-    private int rounds;
+    private int numberOfTeams;
+    private int numberOfRounds;
     private ArrayList[] winnerTournament;
     private ArrayList[] loserTournament;
-    private ArrayList<Team> teams;
-    private int maxTeams;
-    private int placeholders;
 
-    public Bracket(ArrayList<Team> teams, int numTeams, ArrayList<Match>[] winnerTournament, ArrayList<Match>[] loserTournament) {
-        this.teams = teams;
-        this.maxTeams = numTeams;
-        this.winnerTournament = winnerTournament;
-        this.loserTournament = loserTournament;
+    public Bracket(int numberOfTeams, int numberOfRounds, ArrayList<Match>[] winnerBracket, ArrayList<Match>[] loserBracket) {
+        this.numberOfTeams = numberOfTeams;
+        this.numberOfRounds = numberOfRounds;
+        this.winnerTournament = winnerBracket;
+        this.loserTournament = loserBracket;
+    }
+
+    public int getNumberOfTeams() {
+        return numberOfTeams;
+    }
+
+    public int getNumberOfRounds() {
+        return numberOfRounds;
     }
 
     void setMatchWinner(String teamName, int round, int matchNumber, int bracket) {
@@ -37,9 +47,4 @@ public class Bracket {
             }
         }
     }
-
-    private int roundPowerTwo(int num) {
-        return (int) Math.pow(2, Math.ceil(Math.log(num) / Math.log(2)));
-    }
-
 }
