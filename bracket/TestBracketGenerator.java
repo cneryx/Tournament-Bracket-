@@ -14,16 +14,14 @@ public class Generator {
     private int losingRounds;
 
     public Generator(ArrayList<Team> teams) {
-        this.teams = teams;
-        this.numberOfTeams = teams.size();
-        
+       this.teams = teams;
         maxTeams = roundPowerTwo(teams.size());
-        winningRounds = (int) (Math.log(maxTeams) / Math.log(2));
-        losingRounds = (winningRounds - 2) * 2;
+        System.out.println(maxTeams + " " + winningRounds + " " + losingRounds);
+        winningRounds = (int) (Math.log(maxTeams) / Math.log(2) + 2);
+        losingRounds = (winningRounds - 3) * 2;
         winnerTournament = new ArrayList[winningRounds];
         loserTournament = new ArrayList[losingRounds];
-        
-        placeholders = maxTeams - numberOfTeams;
+        placeholders = maxTeams - teams.size();
         for (int i = 0; i < placeholders; i++) {
             teams.add(new Team("ph", -i));
         }
@@ -51,13 +49,13 @@ public class Generator {
     }
     
     public ArrayList<Team>[] getLosingBracket() {
-        loserTournament[0].add(new Match());
-        for (int i = 1; i < losingRounds; i += 2) {
+        for (int i = 0; i < losingRounds; i += 2) {
             for (int j = 0; j < Math.pow(2, i); j++) {
                 loserTournament[i].add(new Match());
                 loserTournament[i + 1].add(new Match());
             }
         }
+        return loserTournament;
     }
 
     private int roundPowerTwo(int num) {
