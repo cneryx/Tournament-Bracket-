@@ -57,7 +57,6 @@ public class Match {
      * @return true, if the winner was succesfully set. false, if unsuccessful
      */
     public boolean setWinner(String winnerName, Match winnerMatch, Match loserMatch) {
-
         if (teams[0] == null || teams[1] == null) { //unsuccessful if Match is not filled
             return false;
         }
